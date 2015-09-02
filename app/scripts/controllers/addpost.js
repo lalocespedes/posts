@@ -25,6 +25,8 @@ angular.module('postsApp')
 
       ngToast.create('Post saved...');
 
+      //window.location = "#/";
+
     };
 
   });

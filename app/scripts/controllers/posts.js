@@ -8,7 +8,7 @@
  * Controller of the postsApp
  */
 angular.module('postsApp')
-  .controller('PostsCtrl', function (PostsResource, ngToast) {
+  .controller('PostsCtrl', function (PostsResource, ngToast, confirm) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -19,15 +19,33 @@ angular.module('postsApp')
 
     ngToast.create('a toast message...');
 
+    this.isCollapsed = false;
+
     this.deletePost = function(id) {
+
+      confirm('Eliminar registro?').then(
+
+          function() {
+
+            //delete item
+            PostsResource.remove({
+              id: id
+            });
+
+          }
+      );
 
       console.log(id);
 
-      PostsResource.remove({
-        id: id
-      });
-
-
     };
 
-  });
+  })
+.controller('tickets', function() {
+
+  this.addticket = function() {
+
+    console.log("enviado");
+
+  };
+
+});

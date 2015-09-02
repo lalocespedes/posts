@@ -19,8 +19,14 @@ angular.module('postsApp')
     this.button = "Update";
     this.btncolor = "btn-warning";
 
-     this.post = PostsResource.get({
+    this.post = PostsResource.get({
         id: $routeParams.id
     });
+
+    this.updatePost = function() {
+
+      console.log("update");
+
+    };
 
   });

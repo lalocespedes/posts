@@ -17,7 +17,9 @@ angular
     'ngSanitize',
     'ngTouch',
     'ngToast',
-    'angular-loading-bar'
+    'angular-loading-bar',
+    'ui.bootstrap',
+    'ui.router'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -40,8 +42,31 @@ angular
         templateUrl: 'views/addpost.html',
         controller: 'EditpostCtrl',
         controllerAs: 'editPost'
-      })
-      .otherwise({
-        redirectTo: '/'
       });
+      //.otherwise({
+      //  redirectTo: '/'
+      //});
+  })
+  .config(function($stateProvider) {
+
+  	//$urlRouterProvider.otherwise('/');
+
+    $stateProvider.state('tickets', {
+  		url: '/tickets',
+      }); //termina state
+
+  }) //termina config
+
+  .run(function ($rootScope, $modal) {
+
+    $rootScope.$on('$stateChangeStart', function (event) {
+
+      $modal.open({
+          templateUrl: "/views/modals/addTicket.html",
+          size: 'md',
+          controller: 'tickets'
+        });
+
+      event.preventDefault();
+    });
   });

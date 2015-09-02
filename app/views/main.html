@@ -1,10 +1,16 @@
+<button type="button" class="btn btn-default" ng-click="posts.isCollapsed = !posts.isCollapsed">Toggle collapse</button>
+	<hr>
+	<div collapse="posts.isCollapsed">
+		<div class="well well-lg">Some content</div>
+	</div>
+
 <h2>Posts <i class="fa fa-file fa-2x"></i> </h2>
 
 <ul ng-repeat="post in posts.all | orderBy:'-id'" class="list-unstyled">
   <li>
-     {{ post.id }}<strong> {{ post.title }} </strong>
+     {{ post.id }}<strong> {{ post.tax_id }} </strong>
      <p>
-       {{ post.body }}
+       {{ post.name }}
      </p>
      <p>
        <button type="button" class="btn btn-danger" ng-click="posts.deletePost(post.id)">
