@@ -15,7 +15,9 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ngToast',
+    'angular-loading-bar'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -28,6 +30,16 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
+      })
+      .when('/addPost', {
+        templateUrl: 'views/addpost.html',
+        controller: 'AddpostCtrl',
+        controllerAs: 'addPost'
+      })
+      .when('/editPost/:id', {
+        templateUrl: 'views/addpost.html',
+        controller: 'EditpostCtrl',
+        controllerAs: 'editPost'
       })
       .otherwise({
         redirectTo: '/'

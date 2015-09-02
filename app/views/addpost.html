@@ -1,0 +1,21 @@
+<h2>{{ editPost.title }} {{ addPost.title }}</h2>
+
+<form ng-submit="savePost()">
+
+  <div class="form-group">
+    <label for="">Title</label>
+    <input type="text" class="form-control" placeholder="" ng-model="editPost.post.title">
+  </div>
+
+  <div class="form-group">
+    <label for="">Text</label>
+      <textarea name="name" rows="8" cols="40" class="form-control" ng-model="editPost.post.body">{{ edit.post.body }}</textarea>
+  </div>
+
+  <button type="button" class="btn btn-default btn-block {{ addPost.btncolor }} {{ editPost.btncolor }}" ng-click="addPost.savePost()">
+    {{ addPost.button }} {{ editPost.button }}
+  </button>
+
+</form>
+
+<br>

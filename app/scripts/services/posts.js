@@ -10,5 +10,5 @@
 angular.module('postsApp')
   .factory('PostsResource', function ($resource) {
 
-    return $resource("http://jsonplaceholder.typicode.com/posts/:id", {id: "@id"})
+    return $resource("http://jsonplaceholder.typicode.com/posts/:id", {id: "@id"});
 });

@@ -1,8 +1,18 @@
-<ul ng-repeat="post in posts.all">
+<h2>Posts <i class="fa fa-file fa-2x"></i> </h2>
+
+<ul ng-repeat="post in posts.all | orderBy:'-id'" class="list-unstyled">
   <li>
-     <strong> {{ post.title }} </strong>
+     {{ post.id }}<strong> {{ post.title }} </strong>
      <p>
        {{ post.body }}
+     </p>
+     <p>
+       <button type="button" class="btn btn-danger" ng-click="posts.deletePost(post.id)">
+          <i class="fa fa-trash-o"></i>
+       </button>
+       <a class="btn btn-primary" href="#editPost/{{ post.id }}">
+         <i class="fa fa-pencil"></i>
+       </a>
      </p>
   </li>
 </ul>
