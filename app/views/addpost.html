@@ -4,17 +4,12 @@
 
   <div class="form-group">
     <label for="">Nombre</label>
-    <input type="text" class="form-control" placeholder="" ng-model="editPost.post.name">
+    <input type="text" class="form-control" placeholder="" ng-model="addPost.post.name">
   </div>
 
   <div class="form-group">
     <label for="">RFC</label>
-    <input type="text" class="form-control" placeholder="" ng-model="editPost.post.tax_id">
-  </div>
-
-  <div class="form-group">
-    <label for="">Text</label>
-      <textarea name="name" rows="8" cols="40" class="form-control" ng-model="editPost.post.body">{{ edit.post.body }}</textarea>
+    <input type="text" class="form-control" placeholder="" ng-model="addPost.post.tax_id">
   </div>
 
   <button type="submit" class="btn btn-default btn-block {{ addPost.btncolor }} {{ editPost.btncolor }}">

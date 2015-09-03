@@ -11,5 +11,5 @@ angular.module('postsApp')
   .factory('PostsResource', function ($resource) {
 
     //return $resource("http://jsonplaceholder.typicode.com/posts/:id", {id: "@id"});
-    return $resource("http://api.clients.local/index.php/");
+    return $resource("http://localhost:9000/api");
 });
