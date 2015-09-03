@@ -19,7 +19,8 @@ angular
     'ngToast',
     'angular-loading-bar',
     'ui.bootstrap',
-    'ui.router'
+    'ui.router',
+    'angularUtils.directives.dirPagination'
   ])
   .config(function ($routeProvider) {
     $routeProvider

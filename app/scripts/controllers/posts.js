@@ -9,15 +9,41 @@
  */
 angular.module('postsApp')
   .controller('PostsCtrl', function (PostsResource, ngToast, confirm) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
 
-    this.all = PostsResource.query();
+    var posts = this;
 
-    ngToast.create('a toast message...');
+    posts.all = []
+    posts.totalUsers = 0;
+    posts.pageSize = 2; // this should match however many results your API puts on one page
+    getResultsPage(1);
+
+    posts.pagination = {
+        current: 1
+    };
+
+    this.pageChanged = function(newPage) {
+        getResultsPage(newPage);
+    };
+
+    function getResultsPage(pageNumber) {
+            PostsResource.get(
+
+                {
+                    pageNumber: pageNumber,
+                    pageSize: posts.pageSize,
+                    query: posts.q
+
+                },
+
+                function(data) {
+                  console.log(data);
+                  posts.all = data.Items;
+                  posts.totalUsers = data.Count;
+                }
+          );
+    }
+
+    //ngToast.create('a toast message...');
 
     this.isCollapsed = false;
 
@@ -35,7 +61,7 @@ angular.module('postsApp')
           }
       );
 
-      console.log(id);
+      //console.log(id);
 
     };
 
