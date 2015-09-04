@@ -16,7 +16,7 @@
 <br>
 
 <ul>
-  <li dir-paginate="client in posts.all | filter:posts.q | itemsPerPage: posts.pageSize" total-items="posts.totalUsers" current-page="posts.pagination.current" class="list-unstyled">
+  <li dir-paginate="client in posts.all | filter:posts.q: '!null' | itemsPerPage: posts.pageSize" total-items="posts.totalUsers" current-page="posts.pagination.current" class="list-unstyled">
      {{ client.id }}<strong> {{ client.tax_id }} </strong>
      <p>
        {{ client.name }}

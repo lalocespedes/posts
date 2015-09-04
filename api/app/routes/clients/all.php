@@ -13,8 +13,6 @@ $app->get('/', function() use($app) {
   $results = new StdClass;
   $results->page = $page;
   $results->limit = $limit;
-  $results->totalItems = 0;
-  $results->items = array();
 
   $users = Capsule::table('clients')->where('name', 'LIKE', '%'. $q .'%')->skip($limit * ($page - 1))->take($limit)->get();
 
