@@ -10,9 +10,9 @@ return [
 		'debug'	=> true
 	],
 	'db' 	=> [
-		'driver' 	=> 'mysql',
+		'driver' 	=> 'sqlite',
 		'host'		=> 'localhost',
-		'name'		=> 'facturacion',
+		'name'		=>  INC_ROOT . '/app/data/derby',
 		'username'	=> 'root',
 		'password'	=> 'root',
 		'charset'	=> 'utf8',

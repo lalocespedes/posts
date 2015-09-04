@@ -14,13 +14,8 @@ environments:
         charset: utf8
 
     development:
-        adapter: mysql
-        host: localhost
-        name: facturacion
-        user: root
-        pass: root
-        port: 3306
-        charset: utf8
+        adapter: sqlite
+        name: ./data/derby
 
     testing:
         adapter: mysql
