@@ -12,17 +12,17 @@ angular.module('postsApp')
 
     console.log("q pex");
 
-  })
-  .run(function ($rootScope, $modal) {
-
-    $rootScope.$on('$stateChangeStart', function (event) {
-
-      $modal.open({
-          templateUrl: "/views/modals/addTicket.html",
-          size: 'md',
-          controller: 'TicketsCtrl'
-        });
-
-      event.preventDefault();
-    });
   });
+  //.run(function ($rootScope, $modal) {
+
+    //$rootScope.$on('$stateChangeStart', function (event) {
+
+      //$modal.open({
+          //templateUrl: "/views/modals/addTicket.html",
+          //size: 'md',
+          //controller: 'TicketsCtrl'
+        //});
+
+      //event.preventDefault();
+    //});
+  //});

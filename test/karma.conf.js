@@ -36,6 +36,7 @@ module.exports = function(config) {
       'app/bower_components/angularUtils-pagination/dirPagination.js',
       'app/bower_components/bootstrap/dist/js/bootstrap.js',
       'app/bower_components/ngToast/dist/ngToast.js',
+      'app/bower_components/satellizer/satellizer.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

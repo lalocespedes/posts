@@ -29,7 +29,6 @@ angular.module('postsApp')
                 },
 
                 function(data) {
-                  console.log(data);
                   posts.all = data.Items;
                   posts.totalUsers = data.Count;
                 }
@@ -69,4 +68,3 @@ angular.module('postsApp')
     };
 
   });
-  

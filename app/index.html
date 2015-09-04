@@ -48,7 +48,7 @@
               <li><a ng-href="#/about">About</a></li>
               <li>
                <p class="navbar-btn">
-                   <a ui-sref="tickets" class="btn btn-success">Add Ticket</a>
+                   <a ui-sref="login" class="btn btn-success">Add Ticket</a>
                </p>
              </li>
             </ul>
@@ -59,8 +59,8 @@
     </div>
 
     <div class="container">
-    <div ng-view=""></div>
     <div ui-view></div>
+    <div ng-view=""></div>
     </div>
 
     <div class="footer">
@@ -97,6 +97,7 @@
     <script src="bower_components/angularUtils-pagination/dirPagination.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/ngToast/dist/ngToast.js"></script>
+    <script src="bower_components/satellizer/satellizer.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -109,6 +110,7 @@
         <script src="scripts/controllers/editpost.js"></script>
         <script src="scripts/services/confirm.js"></script>
         <script src="scripts/controllers/tickets.js"></script>
+        <script src="scripts/controllers/login.js"></script>
         <!-- endbuild -->
 </body>
 </html>
