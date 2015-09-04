@@ -42,32 +42,22 @@ angular
       .when('/editPost/:id', {
         templateUrl: 'views/addpost.html',
         controller: 'EditpostCtrl',
-        controllerAs: 'editPost'
+        controllerAs: 'addPost'
+      })
+      .otherwise({
+        redirectTo: '/'
       });
-      //.otherwise({
-      //  redirectTo: '/'
-      //});
   })
   .config(function($stateProvider) {
 
-  	//$urlRouterProvider.otherwise('/');
+    $stateProvider.state('tickets', {}); //termina state
 
-    $stateProvider.state('tickets', {
-  		url: '/tickets',
-      }); //termina state
+  })
+  .config(['ngToastProvider', function(ngToastProvider) {
+      ngToastProvider.configure({
+        animation: 'slide', // or 'fade'
+        verticalPosition: 'bottom',
+        horizontalPosition: 'center'
 
-  }) //termina config
-
-  .run(function ($rootScope, $modal) {
-
-    $rootScope.$on('$stateChangeStart', function (event) {
-
-      $modal.open({
-          templateUrl: "/views/modals/addTicket.html",
-          size: 'md',
-          controller: 'tickets'
-        });
-
-      event.preventDefault();
-    });
-  });
+      });
+  }]);

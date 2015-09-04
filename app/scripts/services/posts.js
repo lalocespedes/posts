@@ -11,8 +11,13 @@ angular.module('postsApp')
   .service('PostsResource', function ($resource) {
 
     //return $resource("http://jsonplaceholder.typicode.com/posts/:id", {id: "@id"});
-    return $resource("http://localhost:9000/api",
-         { query:  {method: 'GET', isArray: false }},
-         { update: {method:'PUT'}}
+    return $resource("http://localhost:9000/api/clients/:id",
+        {
+          id:"@id"
+        },
+         //{ query:  {method: 'GET', isArray: false }},
+        {
+          update: {method:"PUT"}
+        }
     );
 });

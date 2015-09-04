@@ -8,14 +8,9 @@
  * Controller of the postsApp
  */
 angular.module('postsApp')
-  .controller('EditpostCtrl', function (PostsResource, $routeParams) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('EditpostCtrl', function (PostsResource, $routeParams, ngToast) {
 
-    this.title = "Edit Post";
+    this.title = "Edit Client";
     this.button = "Update";
     this.btncolor = "btn-warning";
 
@@ -23,9 +18,20 @@ angular.module('postsApp')
         id: $routeParams.id
     });
 
-    this.updatePost = function() {
+    this.savePost = function() {
 
-      console.log("update");
+      PostsResource.update(this.post,
+
+          function(data) {
+
+            ngToast.create({
+              className: 'warning',
+              content: '<i class="fa fa-check fa-2x"></i> ' + data.message
+            });
+
+          }
+
+      );
 
     };
 

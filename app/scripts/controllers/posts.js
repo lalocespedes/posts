@@ -12,17 +12,11 @@ angular.module('postsApp')
 
     var posts = this;
 
-    posts.all = []
+    posts.all = [];
     posts.totalUsers = 0;
     posts.pageSize = 2; // this should match however many results your API puts on one page
-    getResultsPage(1);
-
     posts.pagination = {
         current: 1
-    };
-
-    this.pageChanged = function(newPage) {
-        getResultsPage(newPage);
     };
 
     function getResultsPage(pageNumber) {
@@ -30,8 +24,7 @@ angular.module('postsApp')
 
                 {
                     pageNumber: pageNumber,
-                    pageSize: posts.pageSize,
-                    query: posts.q
+                    pageSize: posts.pageSize
 
                 },
 
@@ -40,12 +33,14 @@ angular.module('postsApp')
                   posts.all = data.Items;
                   posts.totalUsers = data.Count;
                 }
-          );
+              );
     }
 
-    //ngToast.create('a toast message...');
+    getResultsPage(1);
 
-    this.isCollapsed = false;
+    this.pageChanged = function(newPage) {
+        getResultsPage(newPage);
+    };
 
     this.deletePost = function(id) {
 
@@ -54,24 +49,24 @@ angular.module('postsApp')
           function() {
 
             //delete item
-            PostsResource.remove({
-              id: id
-            });
+            PostsResource.remove(
+              {
+                id: id
+              },
+              function(data) {
+                ngToast.create({
+                  className: 'danger',
+                  content: '<i class="fa fa-times fa-2x"></i> ' + data.message
+                });
+              }
+            );
+
+            getResultsPage(1);
 
           }
       );
 
-      //console.log(id);
-
     };
 
-  })
-.controller('tickets', function() {
-
-  this.addticket = function() {
-
-    console.log("enviado");
-
-  };
-
-});
+  });
+  

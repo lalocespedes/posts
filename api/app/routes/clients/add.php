@@ -2,30 +2,37 @@
 
 use lalocespedes\Models\Clients;
 
+require 'validation.php';
 
-$app->get('/add-manual', function() use($app) {
-
-      $array = [
-
-        'name' => 'Eduardo',
-        'tax_id' => 'CECE780416PV6'
-
-      ];
-
-      Clients::create($array);
-
-      echo "Guardado";
-
-});
-
-$app->post('/', function() use($app) {
+$app->post('/clients', function() use($app, $validation) {
 
     $request = json_decode($app->request()->getBody());
 
-    $request = get_object_vars($request);
+    $v = $validation($request);
 
-    $client = Clients::create($request);
+    if ($v->passes()) {
 
-    echo "guardado";
+      $request = get_object_vars($request);
+
+      $client = Clients::create($request);
+
+      $app->response->setStatus(200);
+
+      $return = [
+
+        'message' => 'Cliente guardado'
+
+      ];
+
+      $response = $app->response();
+      $response->header('Access-Control-Allow-Origin', '*');
+      $response->write(json_encode($return));
+
+    } else {
+
+      $app->response->setStatus(400);
+      echo "errores";
+
+    }
 
 })->name('clients.add');

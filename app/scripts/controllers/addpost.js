@@ -9,23 +9,35 @@
  */
 angular.module('postsApp')
   .controller('AddpostCtrl', function (PostsResource, ngToast) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
 
-    this.title = "Add Post";
+    this.title = "Add Client";
     this.button = "Save";
     this.btncolor = "btn-success";
 
     this.savePost = function() {
 
-      PostsResource.save(this.post);
+      PostsResource.save(this.post,
 
-      ngToast.create('Post saved...');
+        function success(data) {
 
-      window.location = "#/";
+          ngToast.create({
+            className: 'success',
+            content: '<i class="fa fa-check fa-2x"></i> ' + data.message
+          });
+
+          window.location = "#/";
+
+        },
+        function err(error) {
+
+          ngToast.create({
+            className: 'danger',
+            content: '<i class="fa fa-check fa-2x"></i>' + error.data
+          });
+
+        }
+
+      );
 
     };
 

@@ -1,8 +1,6 @@
-<h2>Clientes <i class="fa fa-users fa-2x"></i> </h2>
-
 <div class="row">
 	<div class="col-xs-4">
-
+		<h2>Clientes <i class="fa fa-users fa-2x"></i> </h2>
 	</div>
 	<div class="col-xs-4">
 		<label for="search">Search:</label>
@@ -15,17 +13,17 @@
 </div>
 <br>
 
+<div class="container-fluid">
+<div class="row text-center">
+
 <ul>
   <li dir-paginate="client in posts.all | filter:posts.q: '!null' | itemsPerPage: posts.pageSize" total-items="posts.totalUsers" current-page="posts.pagination.current" class="list-unstyled">
-     {{ client.id }}<strong> {{ client.tax_id }} </strong>
+    <h2> <small>{{ client.id }} </small> {{ client.name }} <small><strong> {{ client.tax_id }} </strong></small></h2>
      <p>
-       {{ client.name }}
-     </p>
-     <p>
-       <button type="button" class="btn btn-danger" ng-click="posts.deletePost(post.id)">
+       <button type="button" class="btn btn-danger" ng-click="posts.deletePost(client.id)">
           <i class="fa fa-trash-o"></i>
        </button>
-       <a class="btn btn-primary" href="#editPost/{{ post.id }}">
+       <a class="btn btn-primary" href="#editPost/{{ client.id }}">
          <i class="fa fa-pencil"></i>
        </a>
      </p>
@@ -35,3 +33,6 @@
 <dir-pagination-controls on-page-change="posts.pageChanged(newPageNumber)"></dir-pagination-controls>
 
 <div ng-hide="posts.all.length">No posts found</div>
+
+</div>
+</div>

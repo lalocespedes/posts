@@ -4,7 +4,27 @@ use lalocespedes\Models\Clients;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-$app->get('/', function() use($app) {
+
+  function filter ($id) {
+
+
+      if ($id) {
+
+        $results = Clients::find($id);
+
+
+        echo json_encode($results);
+        exit;
+
+
+      }
+
+	};
+
+
+$app->get('/clients(/:id)', function($id=null) use($app) {
+
+  filter($id);
 
   $page = $app->request()->get('pageNumber');
   $limit = $app->request()->get('pageSize');
@@ -26,3 +46,9 @@ $app->get('/', function() use($app) {
 	//echo json_encode($data);
 
 })->name('clients.all');
+
+$app->get('/clients/filter/id', function($id) use($app) {
+
+  echo "results filter";
+
+})->name('clients.filter');

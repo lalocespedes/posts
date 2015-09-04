@@ -5,6 +5,7 @@ use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
 
 use Noodlehaus\Config;
+use lalocespedes\Validation\Validator;
 
 // set timezone for timestamps etc
 date_default_timezone_set('Mexico/General');
@@ -43,6 +44,11 @@ $app->configureMode($app->config('mode'), function() use ($app) {
 
 require 'database.php';
 require 'routes.php';
+
+
+$app->container->singleton('validation', function() use($app) {
+	return new Validator();
+});
 
 $view = $app->view();
 
