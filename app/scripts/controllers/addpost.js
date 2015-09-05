@@ -32,7 +32,7 @@ angular.module('postsApp')
 
           ngToast.create({
             className: 'danger',
-            content: '<i class="fa fa-check fa-2x"></i>' + error.data
+            content: '<i class="fa fa-times fa-2x"></i> ' + error.data.message
           });
 
         }

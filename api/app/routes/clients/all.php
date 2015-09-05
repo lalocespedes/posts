@@ -12,7 +12,6 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
         $results = Clients::find($id);
 
-
         echo json_encode($results);
         exit;
 

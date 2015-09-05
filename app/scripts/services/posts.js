@@ -10,7 +10,6 @@
 angular.module('postsApp')
   .service('PostsResource', function ($resource) {
 
-    //return $resource("http://jsonplaceholder.typicode.com/posts/:id", {id: "@id"});
     return $resource("http://localhost:9000/api/clients/:id",
         {
           id:"@id"

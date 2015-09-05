@@ -15,7 +15,7 @@ environments:
 
     development:
         adapter: sqlite
-        name: ./data/derby
+        name: INC_ROOT.'/app/data/derby'
 
     testing:
         adapter: mysql

@@ -2,24 +2,42 @@
 
 use lalocespedes\Models\Clients;
 
-$app->put('/clients/:id', function($id) use($app) {
+require 'validation.php';
+
+$app->put('/clients/:id', function($id) use($app, $validation) {
 
   $request = json_decode($app->request()->getBody());
 
-  $request = get_object_vars($request);
+  $v = $validation($request);
 
-  $client = Clients::find($id);
+  if ($v->passes()) {
 
-  $client->update($request);
+    $request = get_object_vars($request);
 
-  $return = [
+    $client = Clients::find($id);
 
-    'message' => 'Cliente Actalizado'
+    $client->update($request);
 
-  ];
+    $app->response->setStatus(200);
+    $return = [
+
+      'message' => 'Cliente Actalizado'
+
+    ];
+
+  } else {
+
+    $app->response->setStatus(400);
+
+    $return = [
+
+      'message' => 'Error'
+
+    ];
+
+  }
 
   $response = $app->response();
-  $response->header('Access-Control-Allow-Origin', '*');
   $response->write(json_encode($return));
 
 })->name('clients.update');

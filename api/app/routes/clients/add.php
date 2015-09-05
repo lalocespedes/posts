@@ -24,15 +24,19 @@ $app->post('/clients', function() use($app, $validation) {
 
       ];
 
-      $response = $app->response();
-      $response->header('Access-Control-Allow-Origin', '*');
-      $response->write(json_encode($return));
-
     } else {
 
       $app->response->setStatus(400);
-      echo "errores";
+      $return = [
+
+        'message' => 'Error'
+
+      ];
 
     }
+
+    $response = $app->response();
+    $response->write(json_encode($return));
+
 
 })->name('clients.add');

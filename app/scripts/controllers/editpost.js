@@ -22,11 +22,19 @@ angular.module('postsApp')
 
       PostsResource.update(this.post,
 
-          function(data) {
+          function success(data) {
 
             ngToast.create({
               className: 'warning',
               content: '<i class="fa fa-check fa-2x"></i> ' + data.message
+            });
+
+          },
+          function err(error) {
+
+            ngToast.create({
+              className: 'danger',
+              content: '<i class="fa fa-times fa-2x"></i> ' + error.data.message
             });
 
           }
