@@ -1,5 +1,25 @@
 'use strict';
 
+function skipIfLoggedIn($q, $auth) {
+  var deferred = $q.defer();
+  if ($auth.isAuthenticated()) {
+    deferred.reject();
+  } else {
+    deferred.resolve();
+  }
+  return deferred.promise;
+}
+
+function loginRequired($q, $location, $auth) {
+  var deferred = $q.defer();
+  if ($auth.isAuthenticated()) {
+      deferred.resolve();
+    } else {
+      $location.path('/login');
+    }
+    return deferred.promise;
+}
+
 /**
  * @ngdoc overview
  * @name postsApp
@@ -23,56 +43,83 @@ angular
     'ui.router',
     'angularUtils.directives.dirPagination'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'PostsCtrl',
-        controllerAs: 'posts'
-        // resolve: {
-        //   loginRequired: loginRequired
-        // }
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-        // resolve: {
-        //   loginRequired: loginRequired
-        // }
-      })
-      .when('/addPost', {
-        templateUrl: 'views/addpost.html',
-        controller: 'AddpostCtrl',
-        controllerAs: 'addPost'
-        // resolve: {
-        //   loginRequired: loginRequired
-        // }
-      })
-      .when('/editPost/:id', {
-        templateUrl: 'views/addpost.html',
-        controller: 'EditpostCtrl',
-        controllerAs: 'addPost'
-        // resolve: {
-        //   loginRequired: loginRequired
-        // }
-      });
-      // .otherwise({
-      //   redirectTo: '/'
-      // });
-  })
-  .config(function($stateProvider) {
+  .config(function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
-      .state('login', {
+      .state('private', {
+        url: '',
+        abstract: true,
+        views: {
+          'layout': {
+            templateUrl: '/views/privateLayout.html'
+          }
+        }
+      })
+      .state('public', {
+        url: '',
+        abstract: true,
+        views: {
+          'layout': {
+            templateUrl: '/views/publicLayout.html'
+          }
+        }
+      })
+      .state('public.login', {
         url: '/login',
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
-        controllerAs: 'login'
-        // resolve: {
-        //   skipIfLoggedIn: skipIfLoggedIn
-        // }
-      }); //termina state
+        controllerAs: 'login',
+        resolve: {
+          skipIfLoggedIn: skipIfLoggedIn
+        }
+      })
+      .state('private.logout', {
+          url: '/logout',
+          templateUrl: null,
+          controller: "LogoutCtrl",
+          resolve: {
+             loginRequired: loginRequired
+          }
+      })
+      .state('private.home', {
+        url: '/',
+        templateUrl: 'views/main.html',
+        controller: 'PostsCtrl',
+        controllerAs: 'posts',
+        resolve: {
+          loginRequired: loginRequired
+        }
+      })
+      .state('private.addPost', {
+        url: '/addPost',
+        templateUrl: 'views/addpost.html',
+        controller: 'AddpostCtrl',
+        controllerAs: 'addPost',
+        resolve: {
+          loginRequired: loginRequired
+        }
+      })
+      .state('private.about', {
+        url: '/about',
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl',
+        controllerAs: 'about',
+        resolve: {
+          loginRequired: loginRequired
+        }
+      })
+      .state('private.editPost', {
+        url: '/editPost/:id',
+        templateUrl: 'views/addpost.html',
+        controller: 'EditpostCtrl',
+        controllerAs: 'addPost',
+        resolve: {
+           loginRequired: loginRequired
+        }
+      });
+      $urlRouterProvider
+      .otherwise('/');
+      //.when('/editPost/:id', '/editPost/:id');
 
   })
   .config(['ngToastProvider', function(ngToastProvider) {
@@ -95,23 +142,3 @@ angular
     });
 
   });
-
-  // function skipIfLoggedIn($q, $auth) {
-  //   var deferred = $q.defer();
-  //   if ($auth.isAuthenticated()) {
-  //     deferred.reject();
-  //   } else {
-  //     deferred.resolve();
-  //   }
-  //   return deferred.promise;
-  // }
-  //
-  // function loginRequired($q, $location, $auth) {
-  //   var deferred = $q.defer();
-  //   if ($auth.isAuthenticated()) {
-  //       deferred.resolve();
-  //     } else {
-  //       $location.path('/login');
-  //     }
-  //     return deferred.promise;
-  // }

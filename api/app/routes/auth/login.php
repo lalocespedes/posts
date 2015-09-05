@@ -6,8 +6,14 @@ $app->post('/auth/login', function() use($app) {
 
   $request = get_object_vars($request);
 
-  var_dump($request);
+  $return = [
 
-  return true;
+    'token' => 'token'
+
+  ];
+
+  $response = $app->response();
+  $response->header('Access-Control-Allow-Origin', '*');
+  $response->write(json_encode($return));
 
 })->name('login');

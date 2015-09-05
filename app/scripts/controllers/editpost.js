@@ -8,14 +8,14 @@
  * Controller of the postsApp
  */
 angular.module('postsApp')
-  .controller('EditpostCtrl', function (PostsResource, $routeParams, ngToast) {
+  .controller('EditpostCtrl', function (PostsResource, $stateParams, ngToast) {
 
     this.title = "Edit Client";
     this.button = "Update";
     this.btncolor = "btn-warning";
 
     this.post = PostsResource.get({
-        id: $routeParams.id
+        id: $stateParams.id
     });
 
     this.savePost = function() {
