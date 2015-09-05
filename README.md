@@ -9,6 +9,8 @@ version 0.12.1.
 
 Install 
 
+You nedd node and npm installed
+
 npm install -g grunt-cli bower yo generator-karma generator-angular
 
 npm install --save-dev grunt-php
@@ -26,6 +28,9 @@ mv composer.phar /usr/local/bin/composer
 cd api
 
 composer update
+
+sudo apt-get install php5-sqlite //this is for development environment
+
 
 Run `grunt` for building and `grunt serve` for preview.
 

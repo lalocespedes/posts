@@ -8,17 +8,21 @@
  * Controller of the postsApp
  */
 angular.module('postsApp')
- .controller('LoginCtrl', function($scope, $location, $auth) {
-      $scope.login = function() {
-       $auth.login($scope.user)
-         .then(function() {
-           //ngToast.success('You have successfully signed in');
-           //$location.path('/');
-           console.log("hacer login");
-           $scope.auth.isAuthenticated = true;
-         })
-         .catch(function(response) {
-           //toastr.error(response.data.message, response.status);
-         });
-       };
+ .controller('LoginCtrl', function($auth, $location) {
+
+        var vm = this;
+
+        this.login = function(){
+
+            $auth.login({
+                email: vm.email,
+                password: vm.password
+            })
+            .then(function(){
+                $location.path("/");
+            })
+            .catch(function(response){
+                console.log(response);
+            });
+        };
   });

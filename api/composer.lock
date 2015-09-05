@@ -233,7 +233,7 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v5.1.13",
+            "version": "v5.1.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
@@ -276,7 +276,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v5.1.13",
+            "version": "v5.1.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -318,16 +318,16 @@
         },
         {
             "name": "illuminate/database",
-            "version": "v5.1.13",
+            "version": "v5.1.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "d264896158b354d036cd2d982fdea5829ced423a"
+                "reference": "7655e39c507776c9b9226a8f5619ed9933d3396e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/d264896158b354d036cd2d982fdea5829ced423a",
-                "reference": "d264896158b354d036cd2d982fdea5829ced423a",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/7655e39c507776c9b9226a8f5619ed9933d3396e",
+                "reference": "7655e39c507776c9b9226a8f5619ed9933d3396e",
                 "shasum": ""
             },
             "require": {
@@ -373,11 +373,11 @@
                 "orm",
                 "sql"
             ],
-            "time": "2015-09-01 09:58:31"
+            "time": "2015-09-03 14:53:32"
         },
         {
             "name": "illuminate/pagination",
-            "version": "v5.1.13",
+            "version": "v5.1.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/pagination.git",
@@ -421,16 +421,16 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v5.1.13",
+            "version": "v5.1.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "3026f4768894e640809b5a91703c57ed69a9d9d8"
+                "reference": "c5389968d48517b3b51cfd8cd4abd72f0cc1575b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/3026f4768894e640809b5a91703c57ed69a9d9d8",
-                "reference": "3026f4768894e640809b5a91703c57ed69a9d9d8",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/c5389968d48517b3b51cfd8cd4abd72f0cc1575b",
+                "reference": "c5389968d48517b3b51cfd8cd4abd72f0cc1575b",
                 "shasum": ""
             },
             "require": {
@@ -470,7 +470,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "http://laravel.com",
-            "time": "2015-08-29 21:35:29"
+            "time": "2015-09-03 15:47:41"
         },
         {
             "name": "ircmaxell/random-lib",
@@ -679,13 +679,13 @@
             "version": "v0.4.5",
             "source": {
                 "type": "git",
-                "url": "git@github.com:robmorgan/phinx.git",
-                "reference": "9595643976b2ca791e6c0d8b8155d7687a560f9d"
+                "url": "https://github.com/robmorgan/phinx.git",
+                "reference": "c3f379aebc48266a41d3f72e57db509235a2c1fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/9595643976b2ca791e6c0d8b8155d7687a560f9d",
-                "reference": "9595643976b2ca791e6c0d8b8155d7687a560f9d",
+                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/c3f379aebc48266a41d3f72e57db509235a2c1fe",
+                "reference": "c3f379aebc48266a41d3f72e57db509235a2c1fe",
                 "shasum": ""
             },
             "require": {

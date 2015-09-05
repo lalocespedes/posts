@@ -28,49 +28,50 @@ angular
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'PostsCtrl',
-        controllerAs: 'posts',
-        resolve: {
-          loginRequired: loginRequired
-        }
+        controllerAs: 'posts'
+        // resolve: {
+        //   loginRequired: loginRequired
+        // }
       })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
-        controllerAs: 'about',
-        resolve: {
-          loginRequired: loginRequired
-        }
+        controllerAs: 'about'
+        // resolve: {
+        //   loginRequired: loginRequired
+        // }
       })
       .when('/addPost', {
         templateUrl: 'views/addpost.html',
         controller: 'AddpostCtrl',
-        controllerAs: 'addPost',
-        resolve: {
-          loginRequired: loginRequired
-        }
+        controllerAs: 'addPost'
+        // resolve: {
+        //   loginRequired: loginRequired
+        // }
       })
       .when('/editPost/:id', {
         templateUrl: 'views/addpost.html',
         controller: 'EditpostCtrl',
-        controllerAs: 'addPost',
-        resolve: {
-          loginRequired: loginRequired
-        }
-      })
-      .otherwise({
-        redirectTo: '/'
+        controllerAs: 'addPost'
+        // resolve: {
+        //   loginRequired: loginRequired
+        // }
       });
+      // .otherwise({
+      //   redirectTo: '/'
+      // });
   })
-  .config(function($stateProvider, $authProvider) {
+  .config(function($stateProvider) {
 
     $stateProvider
       .state('login', {
         url: '/login',
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
-        resolve: {
-          skipIfLoggedIn: skipIfLoggedIn
-        }
+        controllerAs: 'login'
+        // resolve: {
+        //   skipIfLoggedIn: skipIfLoggedIn
+        // }
       }); //termina state
 
   })
@@ -84,23 +85,10 @@ angular
   }])
   .config(function($authProvider) {
 
-    $authProvider.httpInterceptor = true;
-$authProvider.withCredentials = true;
-$authProvider.tokenRoot = null;
-$authProvider.cordova = false;
-$authProvider.baseUrl = '/';
-$authProvider.loginUrl = '/api/auth/login';
-//$authProvider.signupUrl = '/auth/signup';
-//$authProvider.unlinkUrl = '/auth/unlink/';
-$authProvider.tokenName = 'token';
-$authProvider.tokenPrefix = 'satellizer';
-$authProvider.authHeader = 'Authorization';
-$authProvider.authToken = 'Bearer';
-$authProvider.storageType = 'localStorage';
-
-    $authProvider.google({
-      clientId: 'Google Client ID'
-    });
+    $authProvider.loginUrl = '/api/auth/login';
+    $authProvider.signupUrl = '/api/auth/signup';
+    $authProvider.tokenName = 'token';
+    $authProvider.tokenPrefix = 'postsApp';
 
     $authProvider.github({
       clientId: 'GitHub Client ID'
@@ -108,22 +96,22 @@ $authProvider.storageType = 'localStorage';
 
   });
 
-  function skipIfLoggedIn($q, $auth) {
-    var deferred = $q.defer();
-    if ($auth.isAuthenticated()) {
-      deferred.reject();
-    } else {
-      deferred.resolve();
-    }
-    return deferred.promise;
-  }
-
-  function loginRequired($q, $location, $auth) {
-    var deferred = $q.defer();
-    if ($auth.isAuthenticated()) {
-        deferred.resolve();
-      } else {
-        $location.path('/login');
-      }
-      return deferred.promise;
-  }
+  // function skipIfLoggedIn($q, $auth) {
+  //   var deferred = $q.defer();
+  //   if ($auth.isAuthenticated()) {
+  //     deferred.reject();
+  //   } else {
+  //     deferred.resolve();
+  //   }
+  //   return deferred.promise;
+  // }
+  //
+  // function loginRequired($q, $location, $auth) {
+  //   var deferred = $q.defer();
+  //   if ($auth.isAuthenticated()) {
+  //       deferred.resolve();
+  //     } else {
+  //       $location.path('/login');
+  //     }
+  //     return deferred.promise;
+  // }

@@ -1,6 +1,6 @@
 <?php
 
-$app->get('/cambio', function() use($app) {
+$app->get('/', function() use($app) {
 
 	//$app->render('home.twig');
 
