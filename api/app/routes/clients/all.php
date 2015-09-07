@@ -15,11 +15,9 @@ use Illuminate\Database\Capsule\Manager as Capsule;
         echo json_encode($results);
         exit;
 
-
       }
 
 	};
-
 
 $app->get('/clients(/:id)', function($id=null) use($app) {
 
@@ -30,19 +28,25 @@ $app->get('/clients(/:id)', function($id=null) use($app) {
   $q = $app->request()->get('query');
 
   $results = new StdClass;
-  $results->page = $page;
-  $results->limit = $limit;
+  $results->page = (int)$page;
+  $results->limit = (int)$limit;
 
-  $users = Capsule::table('clients')->where('name', 'LIKE', '%'. $q .'%')->skip($limit * ($page - 1))->take($limit)->get();
+  $users = Capsule::table('clients')
+    ->where('name', 'LIKE', '%'. $q .'%')
+    ->orWhere('tax_id', 'LIKE', '%'. $q .'%')
+    ->skip($limit * ($page - 1))
+    ->take($limit)
+    ->get();
 
-  $results->Count = (isset($q)) ? count($users) : Capsule::table('clients')->count();
+  $results->Count = Capsule::table('clients')
+    ->where('name', 'LIKE', '%'. $q .'%')
+    ->orWhere('tax_id', 'LIKE', '%'. $q .'%')
+    ->count();
   $results->Items = $users;
 
-  //$data = Clients::all();
   $response = $app->response();
   $response->header('Access-Control-Allow-Origin', '*');
   $response->write(json_encode($results));
-	//echo json_encode($data);
 
 })->name('clients.all');
 

@@ -16,6 +16,8 @@ angular.module('postsApp')
 
     this.savePost = function() {
 
+      console.log(this.post);
+
       PostsResource.save(this.post,
 
         function success(data) {
@@ -30,9 +32,15 @@ angular.module('postsApp')
         },
         function err(error) {
 
-          ngToast.create({
-            className: 'danger',
-            content: '<i class="fa fa-times fa-2x"></i> ' + error.data.message
+          angular.forEach(error.data.errors, function(value, key) {
+
+
+            ngToast.create({
+              className: 'danger',
+              content: '<i class="fa fa-times fa-2x"></i> ' + value + key
+            });
+
+
           });
 
         }

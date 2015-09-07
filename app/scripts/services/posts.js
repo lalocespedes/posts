@@ -16,7 +16,14 @@ angular.module('postsApp')
         },
          //{ query:  {method: 'GET', isArray: false }},
         {
-          update: {method:"PUT"}
+          // save: {
+          //   method: 'POST',
+          //   url: 'http://localhost:9000/api/clients/',
+          //   headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+          // },
+          update: {
+            method:"PUT"
+          }
         }
     );
 });

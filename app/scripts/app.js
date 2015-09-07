@@ -41,7 +41,8 @@ angular
     'angular-loading-bar',
     'ui.bootstrap',
     'ui.router',
-    'angularUtils.directives.dirPagination'
+    'angularUtils.directives.dirPagination',
+    'angular-confirm'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 
@@ -140,5 +141,18 @@ angular
     $authProvider.github({
       clientId: 'GitHub Client ID'
     });
-
   });
+  // .config(function($httpProvider) {
+  //
+  //   $httpProvider.defaults.transformRequest = function (data) {
+  //     if (data === undefined)
+  //         return data;
+  //     var clonedData = $.extend(true, {}, data);
+  //     for (var property in clonedData)
+  //         if (property.substr(0, 1) == '$')
+  //             delete clonedData[property];
+  //
+  //     return $.param(clonedData);
+  // };
+
+  //});

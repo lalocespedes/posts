@@ -8,7 +8,7 @@
  * Controller of the postsApp
  */
 angular.module('postsApp')
-  .controller('PostsCtrl', function (PostsResource, ngToast, confirm) {
+  .controller('PostsCtrl', function (PostsResource, ngToast) {
 
     var posts = this;
 
@@ -24,13 +24,16 @@ angular.module('postsApp')
 
                 {
                     pageNumber: pageNumber,
-                    pageSize: posts.pageSize
+                    pageSize: posts.pageSize,
+                    query: posts.q
 
                 },
 
                 function(data) {
                   posts.all = data.Items;
+                  posts.pageSize = data.limit;
                   posts.totalUsers = data.Count;
+                  posts.pagination.current = data.page;
                 }
               );
     }
@@ -42,10 +45,6 @@ angular.module('postsApp')
     };
 
     this.deletePost = function(id) {
-
-      confirm('Eliminar registro?').then(
-
-          function() {
 
             //delete item
             PostsResource.remove(
@@ -60,10 +59,13 @@ angular.module('postsApp')
               }
             );
 
-            getResultsPage(1);
+            getResultsPage(posts.pagination.current);
 
-          }
-      );
+    };
+
+    this.getclients = function() {
+
+      getResultsPage();
 
     };
 

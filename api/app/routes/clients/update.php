@@ -8,6 +8,8 @@ $app->put('/clients/:id', function($id) use($app, $validation) {
 
   $request = json_decode($app->request()->getBody());
 
+  $request->tax_id = strtoupper($request->tax_id);
+
   $v = $validation($request);
 
   if ($v->passes()) {
@@ -27,11 +29,23 @@ $app->put('/clients/:id', function($id) use($app, $validation) {
 
   } else {
 
+    $verrors = $v->errors();
+
+    $errors = [];
+
+    foreach ($verrors->keys() as $key) {
+        if ($verrors->has($key)) {
+            $errors[$key] = $verrors->get($key);
+        }
+    }
+
     $app->response->setStatus(400);
 
     $return = [
 
-      'message' => 'Error'
+      'message' => 'Error',
+
+      'errors' =>  $errors
 
     ];
 
