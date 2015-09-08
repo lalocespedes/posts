@@ -1,6 +1,20 @@
 <?php
 
-$app->post('/auth/login', $guest(), function() use($app) {
+function createToken($user)
+{
+
+	$payload = [
+            'sub' => $user->id,
+            'iat' => time(),
+            'exp' => time() + (2 * 7 * 24 * 60 * 60)
+        ];
+
+	return JWT::encode($payload, 6575677656756767567);
+
+}
+
+
+$app->post('/auth/login','APIrequest', function() use($app) {
 
 	$request = $app->request;
 
@@ -28,26 +42,17 @@ $app->post('/auth/login', $guest(), function() use($app) {
 
 		if ($user && $app->hash->passwordCheck($password, $user->password)) {
 
-			$_SESSION[$app->config->get('auth.session')] = $user->id;
-
-			//$_SESSON['token'] = 11111;
-			$return = [
-
-				'token' => 'token'
-
-			];
-
-			echo json_encode($return);
-
-			exit();
+			$app->render(200, [
+				'token' => createToken($user)
+			]);
 
 		} else {
 
-			echo 'Error login';
-			exit();
+				$app->render(500, [
+					'error' => TRUE,
+        	'msg'   => 'user or password incorrect'
+				]);
 		}
 	}
-
-	//dd($v->errors());
 
 });

@@ -19,7 +19,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 	};
 
-$app->get('/clients(/:id)', function($id=null) use($app) {
+$app->get('/clients(/:id)', 'APIrequest', function($id=null) use($app) {
 
   filter($id);
 
@@ -27,9 +27,9 @@ $app->get('/clients(/:id)', function($id=null) use($app) {
   $limit = $app->request()->get('pageSize');
   $q = $app->request()->get('query');
 
-  $results = new StdClass;
-  $results->page = (int)$page;
-  $results->limit = (int)$limit;
+  $results = [];
+  $results['page'] = (int)$page;
+  $results['limit'] = (int)$limit;
 
   $users = Capsule::table('clients')
     ->where('name', 'LIKE', '%'. $q .'%')
@@ -38,15 +38,14 @@ $app->get('/clients(/:id)', function($id=null) use($app) {
     ->take($limit)
     ->get();
 
-  $results->Count = Capsule::table('clients')
+  $results['Count'] = Capsule::table('clients')
     ->where('name', 'LIKE', '%'. $q .'%')
     ->orWhere('tax_id', 'LIKE', '%'. $q .'%')
     ->count();
-  $results->Items = $users;
+  $results['Items'] = $users;
 
-  $response = $app->response();
-  $response->header('Access-Control-Allow-Origin', '*');
-  $response->write(json_encode($results));
+  $app->render(200, $results);
+
 
 })->name('clients.all');
 

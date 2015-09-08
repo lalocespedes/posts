@@ -24,6 +24,8 @@
         "phpmailer/phpmailer": "~5.2",
         "nesbot/carbon": "~1.20",
         "illuminate/pagination": "~5.1",
-				"doctrine/dbal": "^2.5"
-    }
+				"doctrine/dbal": "^2.5",
+				"entomb/slim-json-api": "dev-master",
+				"tuupola/slim-jwt-auth": "^0.4.0"
+		}
 }

@@ -97,10 +97,6 @@ $app->container->singleton('mail', function() use($app) {
 
 $view = $app->view();
 
-$app->view()->appendData([
- 		'baseUrl'	=> $app->config->get('app.url')
-]);
-
 $view->parseOptions = [
 	'charset'	=> 'utf-8',
 	'auto_reload' => true,
@@ -112,3 +108,17 @@ $view->parseOptions = [
 $view->parserExtensions = [
 	new TwigExtension
 ];
+
+$app->add(new \Slim\Middleware\JwtAuthentication([
+		"path" => "/clients",
+    "secret" => 6575677656756767567
+]));
+
+
+function APIrequest(){
+
+      $app = \Slim\Slim::getInstance();
+      $app->view(new \JsonApiView());
+      $app->add(new \JsonApiMiddleware());
+
+}
