@@ -6,6 +6,8 @@ $app->get('/', function() use($app) {
 
   //require 'migration.php';
 
+  var_dump($_SESSION);
+
   echo "home";
 
 })->name('home');

@@ -2,7 +2,7 @@
 
 return [
 	'app' 	=> [
-		'url'	=> 'http://facturacion.local',
+		'url'	=> 'http://localhost:9000',
 		'hash'	=> [
 			'algo'	=> PASSWORD_BCRYPT,
 			'cost'	=> 10
@@ -28,7 +28,7 @@ return [
 		'smtp_secure'	=> 'tls',
 		'host' 			=> 'smtp.gmail.com',
 		'username'		=> 'lalocespedes@gmail.com',
-		'password'		=> 'Euni7817#',
+		'password'		=> '',
 		'port'			=> 587,
 		'html'			=> true
 	],

@@ -1,19 +1,53 @@
 <?php
 
-$app->post('/auth/login', function() use($app) {
+$app->post('/auth/login', $guest(), function() use($app) {
 
-  $request = json_decode($app->request()->getBody());
+	$request = $app->request;
 
-  $request = get_object_vars($request);
+	$request = json_decode($app->request()->getBody());
 
-  $return = [
+	$identifier = $request->email;
+	$password = $request->password;
 
-    'token' => 'token'
+	$v = $app->validation;
 
-  ];
+	$v->validate([
+		'identifier' => [$identifier, 'required'],
+		'password' => [$password, 'required']
+	]);
 
-  $response = $app->response();
-  $response->header('Access-Control-Allow-Origin', '*');
-  $response->write(json_encode($return));
+	if ($v->passes()) {
 
-})->name('login');
+		$user = $app->user
+			->where('active', true)
+			->where(function($query) use ($identifier) {
+				return $query->where('email', $identifier)
+					->orWhere('username', $identifier);
+			})
+			->first();
+
+		if ($user && $app->hash->passwordCheck($password, $user->password)) {
+
+			$_SESSION[$app->config->get('auth.session')] = $user->id;
+
+			//$_SESSON['token'] = 11111;
+			$return = [
+
+				'token' => 'token'
+
+			];
+
+			echo json_encode($return);
+
+			exit();
+
+		} else {
+
+			echo 'Error login';
+			exit();
+		}
+	}
+
+	//dd($v->errors());
+
+});

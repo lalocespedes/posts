@@ -25,4 +25,17 @@ angular.module('postsApp')
                 console.log(response);
             });
         };
+
+        this.signup = function() {
+          $auth.signup(this.user)
+            .then(function() {
+            $location.path('/login');
+            //toastr.info('You have successfully created a new account');
+          })
+          .catch(function(response) {
+            //toastr.error(response.data.message);
+          });
+        };
+
+
   });

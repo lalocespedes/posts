@@ -74,6 +74,15 @@ angular
           skipIfLoggedIn: skipIfLoggedIn
         }
       })
+      .state('public.register', {
+        url: '/register',
+        templateUrl: 'views/register.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'login',
+        resolve: {
+          skipIfLoggedIn: skipIfLoggedIn
+        }
+      })
       .state('private.logout', {
           url: '/logout',
           templateUrl: null,
@@ -134,7 +143,7 @@ angular
   .config(function($authProvider) {
 
     $authProvider.loginUrl = '/api/auth/login';
-    $authProvider.signupUrl = '/api/auth/signup';
+    $authProvider.signupUrl = '/api/auth/register';
     $authProvider.tokenName = 'token';
     $authProvider.tokenPrefix = 'postsApp';
 
